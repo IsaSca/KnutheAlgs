@@ -7,6 +7,7 @@ public class KmpFind {
    * @return Returns true or false.
    */
   public boolean find(String s, String w) {
+    
     int k = 0;
     char[] sc = s.toCharArray();
     char[] ws = w.toCharArray();
@@ -14,15 +15,39 @@ public class KmpFind {
       if (ws[k] == c) {
         k++;
         if (k == ws.length) {
-          System.out.println("Word is in string.");
           return true;
         }
       } else {
         k = 0;
       }
     }
-    System.out.println("Word is not in string.");
     return false;
+  }
+  
+  /**
+   * Table function required by KMPFind
+   * @param w the word.
+   * @return A table for the word.
+   */
+  public int[] table(char[] w) {
+    int[] T = new int[w.length];
+    T[0] = -1;
+    int cnd = 0;
+    int pos;
+    for (pos = 0; pos < w.length-1; pos++) {
+      if (w[pos] == w[cnd]) {
+        T[pos] = T[cnd];
+      } else {
+        T[pos] = cnd;
+        cnd = T[cnd];
+        while (cnd >= 0 && (w[pos] < w[cnd] || w[pos] > w[cnd])) {
+          cnd = T[cnd];
+        }
+      }
+      cnd = cnd+1;
+    }
+    T[pos] = cnd;
+    return T;
   }
   
   /**
