@@ -31,6 +31,10 @@ public class KmpFind {
    */
   public static void main(String[] args) {
     KmpFind kmpfind= new KmpFind();
-    kmpfind.find("TestMe", "Test");
+    if (kmpfind.find("TestMe", "Test")) {
+      System.out.println("Found.");
+    } else {
+      System.out.println("Not found.");
+    }
   }
 }
