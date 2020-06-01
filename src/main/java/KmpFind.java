@@ -1,3 +1,7 @@
+/**
+ * @author Isaac
+ * @since 0.1
+ */
 public class KmpFind {
   
   /**
